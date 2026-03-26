@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/user/mods/.claude/hooks/git-block-force-push.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash /home/user/mods/.claude/hooks/bash-guard.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/user/mods/.claude/hooks/file-guard.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/user/mods/.claude/hooks/file-write-cleanup.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
